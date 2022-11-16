@@ -9,7 +9,14 @@ def index(request):
     })
 
 def entry(request, title):
+    entry = util.get_entry(title)
+
+    if entry == None:
+        response = render(request, "encyclopedia/404.html")
+        response.status_code = 404
+        return response
+        
     return render(request, "encyclopedia/entry.html", {
-        "entry": util.get_entry(title),
+        "entry": entry,
         "title": title
     })
