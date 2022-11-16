@@ -12,10 +12,8 @@ def entry(request, title):
     entry = util.get_entry(title)
 
     if entry == None:
-        response = render(request, "encyclopedia/404.html")
-        response.status_code = 404
-        return response
-        
+        return render(request, "encyclopedia/404.html", status=404)
+
     return render(request, "encyclopedia/entry.html", {
         "entry": entry,
         "title": title
