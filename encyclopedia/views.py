@@ -1,5 +1,4 @@
-from django.shortcuts import render
-
+from django.shortcuts import render, redirect
 from . import util
 
 
@@ -17,4 +16,18 @@ def entry(request, title):
     return render(request, "encyclopedia/entry.html", {
         "entry": entry,
         "title": title
+    })
+
+def search(request):
+    entries = []
+    query = request.GET.get('q', '')
+    
+    for entry in util.list_entries():
+        if query == entry:
+            return redirect("entry", title=entry)
+        if query in entry:
+            entries.append(entry)
+
+    return render(request, "encyclopedia/search.html", {
+        "entries": entries
     })
