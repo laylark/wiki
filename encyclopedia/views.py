@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
+
 from . import util
 
 
@@ -31,3 +33,17 @@ def search(request):
     return render(request, "encyclopedia/search.html", {
         "entries": entries
     })
+
+def new(request):
+    if request.method == "POST":
+
+        title = request.POST.get("title")
+        content = request.POST.get("content")
+
+        for entry in util.list_entries():
+            if title == entry:
+                messages.error(request, "Error. Page already exists.")
+                return render(request, "encyclopedia/new.html")
+        util.save_entry(title, content)
+        return redirect("entry", title=title)
+    return render(request, "encyclopedia/new.html")
