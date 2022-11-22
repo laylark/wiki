@@ -7,6 +7,14 @@
 {% block body %}
     <h1>Create a new encyclopedia entry:</h1>
 
+    {% if messages %}
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+            {{ message }}
+        </li>
+        {% endfor %}    
+    {% endif %}
+
     <form action="{% url 'new' %}" method="post">
         {% csrf_token %}
         <label for="title">Title:</label>
@@ -16,5 +24,4 @@
         </textarea>    
         <input type="submit" value="Submit">
     </form>
-
 {% endblock %}
