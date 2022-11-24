@@ -8,6 +8,10 @@
 
 <h1>{{ title }}</h1>
 
-<div>{{ entry }}</div>
+<form action="{% url 'edit' title=title %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
 
 {% endblock %}

@@ -4,8 +4,10 @@ from django import forms
 
 from . import util
 
-class EntryForm(forms.Form):
+class NewEntryForm(forms.Form):
     title = forms.CharField(label="Title")
+    content = forms.CharField(label="Content", widget=forms.Textarea)
+class EditEntryForm(forms.Form):
     content = forms.CharField(label="Content", widget=forms.Textarea)
 
 def index(request):
@@ -41,7 +43,7 @@ def search(request):
 def new(request):
     if request.method == "POST":
 
-        form = EntryForm(request.POST)
+        form = NewEntryForm(request.POST)
 
         if not form.is_valid():
             return render(request, "encyclopedia/new.html", {"form": form})
@@ -56,4 +58,23 @@ def new(request):
         util.save_entry(title, content)
         return redirect("entry", title=title)
 
-    return render(request, "encyclopedia/new.html", {"form": EntryForm()})
+    return render(request, "encyclopedia/new.html", {"form": NewEntryForm()})
+
+def edit(request, title):
+    entry = util.get_entry(title)
+    if request.method == "POST":
+
+        form = EditEntryForm(request.POST)
+
+        if not form.is_valid():
+            return render(request, "encyclopedia/edit.html", {"form": form})
+
+        content = form.cleaned_data["content"]
+
+        util.save_entry(title, content)
+        return redirect("entry", title=title)
+
+    return render(request, "encyclopedia/edit.html", {
+        "title": title,
+        "form": EditEntryForm(initial={"content": entry})
+    })
