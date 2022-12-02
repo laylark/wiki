@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django import forms
+import random
 
 from . import util
 
@@ -78,3 +79,10 @@ def edit(request, title):
         "title": title,
         "form": EditEntryForm(initial={"content": entry})
     })
+
+def random_entry(request):
+    entries = util.list_entries()
+    
+    entry = random.sample(entries, 1)[0]
+    
+    return redirect("entry", title=entry)
