@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django import forms
 import random
+import markdown2
 
 from . import util
 
@@ -19,11 +20,14 @@ def index(request):
 def entry(request, title):
     entry = util.get_entry(title)
 
+    html_entry = markdown2.markdown(entry)
+
+
     if entry == None:
         return render(request, "encyclopedia/404.html", status=404)
 
     return render(request, "encyclopedia/entry.html", {
-        "entry": entry,
+        "entry": html_entry,
         "title": title
     })
 
