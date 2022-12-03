@@ -22,7 +22,7 @@ def index(request):
 # Render entry page
 def entry(request, title):
     entry = util.get_entry(title)
-    #TODO convert markdown to html
+    # Convert markdown to html
     html_entry = markdown2.markdown(entry)
 
     # Validate if entry exists
