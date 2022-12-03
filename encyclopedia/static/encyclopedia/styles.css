@@ -21,6 +21,14 @@ textarea {
     padding: 10px;
 }
 
+.wrapper {
+    padding: 1rem;
+}
+
+.btns {
+    margin: 1rem;
+}
+
 .search {
     width: 100%;
     font-size: 15px;

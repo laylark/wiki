@@ -16,8 +16,10 @@
     {% endif %}
 
     <form action="{% url 'new' %}" method="post">
+        <div class="form-group wrapper">
         {% csrf_token %}
         {{ form }}
-        <input type="submit" value="Submit">
+        </div>
+        <input type="submit" value="Submit" class="btn btn-primary btns">
     </form>
 {% endblock %}

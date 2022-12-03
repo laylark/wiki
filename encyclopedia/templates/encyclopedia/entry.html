@@ -6,10 +6,8 @@
 
 {% block body %}
 
-<h1>{{ title }}</h1>
+<div class="wrapper">{{ entry|safe }}</div>
 
-<div>{{ entry|safe }}</div>
-
-<a href="{% url 'edit' title=title %}">Edit</a>
+<a href="{% url 'edit' title=title %}" class="btn btn-primary btns">Edit</a>
 
 {% endblock %}

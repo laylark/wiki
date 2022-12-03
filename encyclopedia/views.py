@@ -8,10 +8,10 @@ from . import util
 
 # Create classes for entry forms
 class NewEntryForm(forms.Form):
-    title = forms.CharField(label="Title")
-    content = forms.CharField(label="Content", widget=forms.Textarea)
+    title = forms.CharField(label="Title", widget=forms.TextInput(attrs={'class' : 'form-control'}))
+    content = forms.CharField(label="Content", widget=forms.Textarea(attrs={'class' : 'form-control'}))
 class EditEntryForm(forms.Form):
-    content = forms.CharField(label="Content", widget=forms.Textarea)
+    content = forms.CharField(label="Content", widget=forms.Textarea(attrs={'class' : 'form-control'}))
 
 # Render index page with all entries listed
 def index(request):
