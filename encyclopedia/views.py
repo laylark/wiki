@@ -40,6 +40,7 @@ def search(request):
     query = request.GET.get('q', '')
     
     # Check if query matches any in entries list
+    # TODO: set entry and all entries to lower case
     for entry in util.list_entries():
         if query == entry:
             # Redirect user to entry page
