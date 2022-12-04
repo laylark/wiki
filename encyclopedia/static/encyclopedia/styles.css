@@ -17,6 +17,10 @@ textarea {
     width: 80%;
 }
 
+img {
+    max-width: 100%;
+}
+
 .main {
     padding: 10px;
 }
@@ -42,7 +46,7 @@ textarea {
 
 .sidebar {
     background-color: #f0f0f0;
-    height: 100vh;
+    min-height: 100vh;
     padding: 20px;
 }
 
