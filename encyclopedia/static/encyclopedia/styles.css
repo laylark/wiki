@@ -30,9 +30,14 @@ textarea {
 }
 
 .search {
-    width: 100%;
+    max-width: 100%;
     font-size: 15px;
     line-height: 15px;
+    margin-bottom: 0.5rem;
+}
+
+.search-btn {
+    margin-bottom: 0.5rem;
 }
 
 .sidebar {
@@ -43,4 +48,10 @@ textarea {
 
 .sidebar h2 {
     margin-top: 5px;
+}
+
+@media only screen and (max-width: 600px) {
+    .sidebar {
+        height:fit-content;
+    }
 }
