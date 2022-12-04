@@ -22,13 +22,14 @@ def index(request):
 # Render entry page
 def entry(request, title):
     entry = util.get_entry(title)
-    # Convert markdown to html
-    html_entry = markdown2.markdown(entry)
 
     # Validate if entry exists
     if entry == None:
         return render(request, "encyclopedia/404.html", status=404)
 
+    # Convert markdown to html
+    html_entry = markdown2.markdown(entry)
+    
     return render(request, "encyclopedia/entry.html", {
         "entry": html_entry,
         "title": title
