@@ -37,15 +37,14 @@ def entry(request, title):
 # Search for entries
 def search(request):
     entries = []
-    query = request.GET.get('q', '')
-    
-    # Check if query matches any in entries list
-    # TODO: set entry and all entries to lower case
+    query = request.GET.get('q', '').lower()
+
+    # Check if query matches any entry in entries list
     for entry in util.list_entries():
-        if query == entry:
+        if query == entry.lower():
             # Redirect user to entry page
             return redirect("entry", title=entry)
-        if query in entry:
+        if query in entry.lower():
             # Append each query to entries list
             entries.append(entry)
 
